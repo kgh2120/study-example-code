@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * Stream의 장점 중 첫번째, 가독성의 증가 예제 코드 ToBe
+ * Stream의 장점 중 가독성의 증가 예제 코드 ToBe
  *  1부터 10까지의 짝수 중에서 그들의 제곱의 합을 구하라.
  */
 public class StreamMeritReadabilityToBe {
