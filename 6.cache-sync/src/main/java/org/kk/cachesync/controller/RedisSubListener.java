@@ -1,7 +1,10 @@
 package org.kk.cachesync.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.kk.cachesync.dto.MessageDto;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -19,7 +22,12 @@ public class RedisSubListener implements MessageListener {
 
         String body = redisTemplate.getStringSerializer().deserialize(message.getBody());
 
-        log.info("message arrive! : {}", body);
+        try {
+            MessageDto messageDto = new ObjectMapper().readValue(body, MessageDto.class);
+            log.info("message arrive! : {}", messageDto);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
