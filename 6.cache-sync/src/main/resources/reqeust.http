@@ -2,8 +2,7 @@
 GET https://examples.http-client.intellij.net/get
     ?generated-in=IntelliJ IDEA
 
-###
-
+### Redis Pub-Sub Message Test
 POST http://localhost:8080/send
 content-type: application/json
 
@@ -11,3 +10,13 @@ content-type: application/json
   "author": "kim",
   "message": "hello world"
 }
+
+### GET MemberData on Spring Server
+GET http://localhost:8080/member/1
+
+
+### GET MemberData on NginX
+GET http://localhost/member/1
+
+### PATCH -> Member StatusMessage Change
+PUT http://localhost:8080/member/1

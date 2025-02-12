@@ -2,12 +2,15 @@ package org.kk.cachesync.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.kk.cachesync.dto.MemberDto;
 import org.kk.cachesync.entity.Member;
 import org.kk.cachesync.repository.MemberRepository;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Transactional
 @RequiredArgsConstructor
 @Service
@@ -18,9 +21,16 @@ public class MemberService {
 
     @Cacheable(cacheNames = "user", key = "#id")
     public MemberDto findMemberById(Long id){
+        log.info("cache Miss Member id : {}", id);
         Member member = memberRepository.findById(id)
                 .orElseThrow();
         return new MemberDto(member);
+    }
+    @CacheEvict(cacheNames = "user", key = "#id")
+    public void updateStatueMessage(Long id, String message){
+        Member member = memberRepository.findById(id)
+                .orElseThrow();
+        member.updateStatusMessage(message);
     }
 
 
