@@ -2,7 +2,9 @@ package org.kk.cachesync.config;
 
 import lombok.RequiredArgsConstructor;
 import org.kk.cachesync.controller.RedisSubListener;
+import org.kk.cachesync.service.CacheEvictService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -24,6 +26,8 @@ public class AppConfig {
     @Value("${spring.data.redis.port}")
     private int redisPort;
 
+    private final CacheEvictService cacheEvictService;
+
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
@@ -41,7 +45,7 @@ public class AppConfig {
 
     @Bean
     public RedisSubListener redisSubListener(){
-        return new RedisSubListener(redisTemplate());
+        return new RedisSubListener(redisTemplate(), cacheEvictService);
     }
 
 
@@ -54,7 +58,7 @@ public class AppConfig {
     public RedisMessageListenerContainer redisMessageListenerContainer(){
         RedisMessageListenerContainer redisMessageListenerContainer = new RedisMessageListenerContainer();
         redisMessageListenerContainer.setConnectionFactory(redisConnectionFactory());
-        redisMessageListenerContainer.addMessageListener(messageListenerAdapter(), new ChannelTopic("test"));
+        redisMessageListenerContainer.addMessageListener(messageListenerAdapter(), new ChannelTopic("cache-sync"));
         return redisMessageListenerContainer;
     }
 }

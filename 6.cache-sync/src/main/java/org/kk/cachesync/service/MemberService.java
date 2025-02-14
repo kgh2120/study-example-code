@@ -3,6 +3,7 @@ package org.kk.cachesync.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.kk.cachesync.dto.CacheEvictMessage;
 import org.kk.cachesync.dto.MemberDto;
 import org.kk.cachesync.entity.Member;
 import org.kk.cachesync.repository.MemberRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final RedisMessagePublisher messagePublisher;
     @Value("${server.port}")
     private int port;
 
@@ -34,6 +36,8 @@ public class MemberService {
         Member member = memberRepository.findById(id)
                 .orElseThrow();
         member.updateStatusMessage(message);
+
+        messagePublisher.publishCacheEvictMessage(new CacheEvictMessage("user", id));
     }
 
 
