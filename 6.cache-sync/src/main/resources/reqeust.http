@@ -19,4 +19,9 @@ GET http://localhost:8080/member/1
 GET http://localhost/member/1
 
 ### PATCH -> Member StatusMessage Change
-PUT http://localhost:8080/member/1
+PATCH http://localhost:8080/member/1
+content-type: application/json
+
+{
+  "message": "i am son"
+}

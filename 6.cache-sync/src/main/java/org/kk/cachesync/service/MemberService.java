@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.kk.cachesync.dto.MemberDto;
 import org.kk.cachesync.entity.Member;
 import org.kk.cachesync.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Service;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    @Value("${server.port}")
+    private int port;
 
 
     @Cacheable(cacheNames = "user", key = "#id")
@@ -24,7 +27,7 @@ public class MemberService {
         log.info("cache Miss Member id : {}", id);
         Member member = memberRepository.findById(id)
                 .orElseThrow();
-        return new MemberDto(member);
+        return new MemberDto(member, port);
     }
     @CacheEvict(cacheNames = "user", key = "#id")
     public void updateStatueMessage(Long id, String message){
