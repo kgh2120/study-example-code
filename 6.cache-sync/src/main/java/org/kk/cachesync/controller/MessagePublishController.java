@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class MessagePublishController {
 
     private final RedisMessagePublisher messagePublisher;
-
+    
     @PostMapping("/send")
     public void sendMessage(@RequestBody CacheEvictMessage cacheEvictmessage){
         messagePublisher.publishCacheEvictMessage(cacheEvictmessage);

@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Application-8080" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <envs>
+      <env name="server.port" value="8080" />
+    </envs>
+    <module name="cache-sync.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.kk.cachesync.Application" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.kk.cachesync.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

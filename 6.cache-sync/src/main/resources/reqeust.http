@@ -23,5 +23,5 @@ PATCH http://localhost:8080/member/1
 content-type: application/json
 
 {
-  "message": "hello world!"
+  "message": "hi bros~"
 }

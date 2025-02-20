@@ -18,6 +18,7 @@ public class RedisMessagePublisher {
         try {
             String json = new ObjectMapper().writeValueAsString(cacheEvictmessage);
             redisTemplate.convertAndSend("cache-sync", json);
+
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
