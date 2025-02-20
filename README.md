@@ -11,5 +11,5 @@
 | [2.java-bufferedreader-scanner](https://github.com/kgh2120/study-example-code/tree/main/2.java-bufferedreader-scanner) | 자바에서 입력을 받는 두 방법인 스캐너와 버퍼드리더에서 발생하는 성능 차이의 원인에 대해 조사한 프로젝트입니다. | 2024.11.18 ~ 2024.11.19 | [블로그](https://dev-qhyun.tistory.com/33)  | 
 | [3.mysql-stored-function](https://github.com/kgh2120/study-example-code/tree/main/3.mysql-stored-function) | MySQL의 Stored Function에 대해서 조사한 디렉토리입니다. | 2024.11.26 ~ 2024.11.27 | [블로그](https://dev-qhyun.tistory.com/35) | 
 | [4.mysql-stored-procedure](https://github.com/kgh2120/study-example-code/tree/main/4.mysql-stored-procedure) | MySQL의 Stored Function에 대해서 조사한 디렉토리입니다. | 2024.12.16 | [블로그](https://dev-qhyun.tistory.com/37) | 
-
+| [6.cache-sync](https://github.com/kgh2120/study-example-code/tree/main/6.cache-sync) | Redis Pub/Sub 기능을 활용한 로컬 캐시 동기화 | 2025.02.10 ~ 2025.02.20 | [블로그](https://dev-qhyun.tistory.com/39) |
 
