@@ -17,4 +17,9 @@ public interface AccountRepository extends JpaRepository<Account, String> {
 
     @Query(value = "select * from Account where account_number = :accountNumber for update", nativeQuery = true)
     Optional<Account> findByIdWithNativeQueryLock(String accountNumber);
+
+
+    @Lock(LockModeType.OPTIMISTIC)
+    @Query("select a from Account a where a.accountNumber = :accountNumber")
+    Optional<Account> findByIdWithOptimisticLock(String accountNumber);
 }

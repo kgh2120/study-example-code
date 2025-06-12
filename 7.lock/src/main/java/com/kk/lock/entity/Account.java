@@ -3,6 +3,7 @@ package com.kk.lock.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -19,6 +20,9 @@ public class Account {
 
     @Column
     private long balance;
+
+    @Version
+    private long version;
 
     private Account(String accountNumber, String accountOwnerName, long balance) {
         this.accountNumber = accountNumber;
@@ -39,5 +43,9 @@ public class Account {
 
     public void deposit(long amount) {
         balance += amount;
+    }
+
+    public void updateAccountOwnerName(String accountOwnerName) {
+        this.accountOwnerName = accountOwnerName;
     }
 }
