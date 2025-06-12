@@ -20,11 +20,14 @@ import java.util.List;
 @Service
 public class AccountServiceWithSynchronized {
 
+    // TODO Bean Scope 변경해서 동작하는거 확인하기
+    // TODO 멀티 인스턴스에서 동기화 깨지는거 확인하기
+
     private final AccountRepository accountRepository;
     private final TransactionLogRepository transactionLogRepository;
 
 
-    public synchronized void send(SendRequest request){
+    public void send(SendRequest request){
         Account sender = accountRepository.findById(request.senderAccountNumber())
                 .orElseThrow();
 

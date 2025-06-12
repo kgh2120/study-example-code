@@ -7,6 +7,7 @@ import com.kk.lock.entity.Account;
 import com.kk.lock.repository.AccountRepository;
 import com.kk.lock.repository.TransactionLogRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +36,9 @@ public class AccountService {
     }
 
     public BalanceResponse getBalance(String accountNumber){
-        return null;
+        Account account = accountRepository.findById(accountNumber)
+                .orElseThrow();
+        return new BalanceResponse(account.getBalance());
     }
 
     public List<TransactionResponse> getTransactions(String accountNumber){
