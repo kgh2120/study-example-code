@@ -7,7 +7,6 @@ import com.kk.lock.entity.Account;
 import com.kk.lock.repository.AccountRepository;
 import com.kk.lock.repository.TransactionLogRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,7 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class AccountService {
+public class BaseAccountService {
 
     private final AccountRepository accountRepository;
     private final TransactionLogRepository transactionLogRepository;

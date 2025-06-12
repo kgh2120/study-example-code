@@ -15,13 +15,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class AccountServiceTest {
+class BaseAccountServiceTest {
 
     @Autowired
-    AccountService accountService;
+    BaseAccountService baseAccountService;
 
     @Autowired
     AccountRepository accountRepository;
@@ -57,7 +56,7 @@ class AccountServiceTest {
         for (int i = 0; i < threadCount; i++) {
             executorService.submit(() -> {
                 try{
-                    accountService.send(sendRequest);
+                    baseAccountService.send(sendRequest);
                 } finally {
                     countDownLatch.countDown();
                 }
@@ -93,7 +92,7 @@ class AccountServiceTest {
         for (int i = 0; i < threadCount; i++) {
             executorService.submit(() -> {
                 try{
-                    accountService.send(sendRequest);
+                    baseAccountService.send(sendRequest);
                 } finally {
                     countDownLatch.countDown();
                 }

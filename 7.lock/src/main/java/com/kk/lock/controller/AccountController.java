@@ -1,10 +1,9 @@
 package com.kk.lock.controller;
 
 import com.kk.lock.facade.SynchronizedFacade;
-import com.kk.lock.service.AccountService;
+import com.kk.lock.service.BaseAccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 public class AccountController {
 
-    private final AccountService accountService;
+    private final BaseAccountService baseAccountService;
     private final SynchronizedFacade synchronizedFacade;
     private final Environment environment;
 
@@ -36,7 +35,7 @@ public class AccountController {
     @GetMapping("/balance/{accountNumber}")
     public ResponseEntity<BalanceResponse> getBalance(@PathVariable String accountNumber) {
 
-        return ResponseEntity.ok(accountService.getBalance(accountNumber));
+        return ResponseEntity.ok(baseAccountService.getBalance(accountNumber));
     }
 
     @GetMapping("/transaction/{accountNumber}")
