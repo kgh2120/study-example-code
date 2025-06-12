@@ -1,6 +1,7 @@
 package com.kk.lock.controller;
 
 import com.kk.lock.facade.OptimisticLockFacade;
+import com.kk.lock.facade.RedisLockFacade;
 import com.kk.lock.facade.ReentrantLockFacade;
 import com.kk.lock.facade.SynchronizedFacade;
 import com.kk.lock.service.BaseAccountService;
@@ -25,13 +26,14 @@ public class AccountController {
     private final ReentrantLockFacade reentrantLockFacade;
     private final ExclusiveLockAccountService exclusiveLockAccountService;
     private final OptimisticLockFacade optimisticLockFacade;
+    private final RedisLockFacade redisLockFacade;
     private final Environment environment;
 
 
     @PostMapping("/send")
     public ResponseEntity<Void> send(@RequestBody SendRequest request) {
         log.info("Send request: {}", request);
-        optimisticLockFacade.sendWithDataJpaOptimisticLock(request);
+        redisLockFacade.sendWithLettuceLock(request);
         return ResponseEntity.ok().build();
     }
 

@@ -21,7 +21,7 @@ public class Account {
     @Column
     private long balance;
 
-    @Version
+//    @Version
     private long version;
 
     private Account(String accountNumber, String accountOwnerName, long balance) {
