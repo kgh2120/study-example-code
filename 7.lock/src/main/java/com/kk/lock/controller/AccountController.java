@@ -1,5 +1,6 @@
 package com.kk.lock.controller;
 
+import com.kk.lock.facade.ReentrantLockFacade;
 import com.kk.lock.facade.SynchronizedFacade;
 import com.kk.lock.service.BaseAccountService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -17,13 +19,14 @@ public class AccountController {
 
     private final BaseAccountService baseAccountService;
     private final SynchronizedFacade synchronizedFacade;
+    private final ReentrantLockFacade reentrantLockFacade;
     private final Environment environment;
 
 
     @PostMapping("/send")
     public ResponseEntity<Void> send(@RequestBody SendRequest request) {
         log.info("Send request: {}", request);
-        synchronizedFacade.send(request);
+        reentrantLockFacade.send(request);
         return ResponseEntity.ok().build();
     }
 
