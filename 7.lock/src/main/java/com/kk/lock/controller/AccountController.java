@@ -3,8 +3,10 @@ package com.kk.lock.controller;
 import com.kk.lock.facade.ReentrantLockFacade;
 import com.kk.lock.facade.SynchronizedFacade;
 import com.kk.lock.service.BaseAccountService;
+import com.kk.lock.service.ExclusiveLockAccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +22,20 @@ public class AccountController {
     private final BaseAccountService baseAccountService;
     private final SynchronizedFacade synchronizedFacade;
     private final ReentrantLockFacade reentrantLockFacade;
+    private final ExclusiveLockAccountService exclusiveLockAccountService;
     private final Environment environment;
 
 
     @PostMapping("/send")
     public ResponseEntity<Void> send(@RequestBody SendRequest request) {
         log.info("Send request: {}", request);
-        reentrantLockFacade.send(request);
+        exclusiveLockAccountService.sendWithPessimisticLock(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/name/{accountNumber}")
+    public ResponseEntity<Void> changeName(@PathVariable String accountNumber) {
+        exclusiveLockAccountService.updateAccountOwnerName(accountNumber);
         return ResponseEntity.ok().build();
     }
 
