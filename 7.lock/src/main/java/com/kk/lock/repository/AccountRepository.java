@@ -15,7 +15,7 @@ public interface AccountRepository extends JpaRepository<Account, String> {
     Optional<Account> findByIdWithPessimisticWrite(String accountNumber);
 
 
-    @Query(value = "select * from Account where account_number = :accountNumber for update", nativeQuery = true)
+    @Query(value = "select * from account where account_number = :accountNumber for update", nativeQuery = true)
     Optional<Account> findByIdWithNativeQueryLock(String accountNumber);
 
 

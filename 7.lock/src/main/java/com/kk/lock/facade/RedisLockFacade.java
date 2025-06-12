@@ -4,12 +4,13 @@ import com.kk.lock.controller.SendRequest;
 import com.kk.lock.repository.LettuceLockRepository;
 import com.kk.lock.service.BaseAccountService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
-
+@Slf4j
 @RequiredArgsConstructor
 @Component
 public class RedisLockFacade {
@@ -46,7 +47,11 @@ public class RedisLockFacade {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
-            rLock.unlock();
+            try {
+                rLock.unlock();   // (4)
+            } catch (IllegalMonitorStateException e) {
+
+            }
         }
 
     }
