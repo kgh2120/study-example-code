@@ -5,10 +5,6 @@ import com.kk.lock.controller.SendRequest;
 import com.kk.lock.controller.TransactionResponse;
 import com.kk.lock.entity.Account;
 import com.kk.lock.repository.AccountRepository;
-import com.kk.lock.repository.TransactionLogRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +20,7 @@ public class AccountServiceWithSynchronized {
     // TODO 멀티 인스턴스에서 동기화 깨지는거 확인하기
 
     private final AccountRepository accountRepository;
-    private final TransactionLogRepository transactionLogRepository;
+
 
 
     public void send(SendRequest request){
