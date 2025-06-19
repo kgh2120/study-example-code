@@ -12,4 +12,4 @@
 | [3.mysql-stored-function](https://github.com/kgh2120/study-example-code/tree/main/3.mysql-stored-function) | MySQL의 Stored Function에 대해서 조사한 디렉토리입니다. | 2024.11.26 ~ 2024.11.27 | [블로그](https://dev-qhyun.tistory.com/35) | 
 | [4.mysql-stored-procedure](https://github.com/kgh2120/study-example-code/tree/main/4.mysql-stored-procedure) | MySQL의 Stored Function에 대해서 조사한 디렉토리입니다. | 2024.12.16 | [블로그](https://dev-qhyun.tistory.com/37) | 
 | [6.cache-sync](https://github.com/kgh2120/study-example-code/tree/main/6.cache-sync) | Redis Pub/Sub 기능을 활용한 로컬 캐시 동기화 | 2025.02.10 ~ 2025.02.20 | [블로그](https://dev-qhyun.tistory.com/39) |
-
+| [7.lock](https://github.com/kgh2120/study-example-code/tree/main/7.lock) | Spring에서 사용할 수 있는 동시성 제어 방법 비교 | 2025.06.12 ~ 2025.06.19 | |
